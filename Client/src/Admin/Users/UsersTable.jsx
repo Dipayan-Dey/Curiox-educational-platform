@@ -81,7 +81,7 @@ function UsersTable({ user }) {
 async function DeleteUser(id) {
   // alert(id)
 try {
-    const {data}=await axios.delete(`${Server}/api/admin/deleteUser/${id}`,{},{
+    const {data}=await axios.delete(`${Server}/api/admin/deleteUser/${id}`,{
     headers:{
       token:localStorage.getItem("token")
     }
@@ -153,7 +153,7 @@ try {
 
           {/* Table Container */}
           <div className="bg-slate-800/30 backdrop-blur-xl rounded-2xl border border-slate-700/50 overflow-hidden shadow-2xl">
-            <div className="">
+            <div className="overflow-x-auto">
               <table className="w-full">
                 <thead>
                   <tr className="bg-gradient-to-r from-slate-800/80 to-slate-700/80 backdrop-blur-sm">
