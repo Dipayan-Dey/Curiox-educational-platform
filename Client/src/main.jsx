@@ -6,7 +6,7 @@ import App from "./App.jsx";
 import { UserContextProvider } from "./Context/UserContext";
 import { CourseContextProvide } from "./Context/CourseContext.jsx";
 import "sweetalert2/dist/sweetalert2.min.css";
-export const Server = "http://localhost:8000";
+export const Server = "https://curiox-educational-platform.onrender.com";
 createRoot(document.getElementById("root")).render(
   <StrictMode>
     <UserContextProvider>
