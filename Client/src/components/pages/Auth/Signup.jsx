@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { UserData } from "../../../Context/UserContext";
 import { Eye, EyeOff, Sparkles } from "lucide-react";
+import { toast } from "react-toastify";
 
 const Signup = () => {
   const navigate = useNavigate();
@@ -31,12 +32,12 @@ const Signup = () => {
       formData;
 
     if (!userName || !userEmail || !userPassword || !confirmPassword) {
-      alert("All fields are required.");
+      toast.error("All fields are required.");
       return;
     }
 
     if (userPassword !== confirmPassword) {
-      alert("Passwords do not match.");
+      toast.error("Passwords do not match.");
       return;
     }
 
@@ -77,7 +78,7 @@ const Signup = () => {
         <div className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-300 mb-1">
-              Full Name
+              Full Name <span className="text-red-700 text-sm font-bold"> * </span>
             </label>
             <input
               type="text"
@@ -91,7 +92,7 @@ const Signup = () => {
 
           <div>
             <label className="block text-sm font-medium text-gray-300 mb-1">
-              Email Address
+              Email Address <span className="text-red-700 text-sm font-bold"> * </span>
             </label>
             <input
               type="email"
@@ -104,7 +105,7 @@ const Signup = () => {
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-300 mb-1">
-              Profile Photo
+              Profile Photo <span className="text-red-700 text-sm font-bold"> * </span>
             </label>
             <input
               type="file"
@@ -118,7 +119,7 @@ const Signup = () => {
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-300 mb-1">
-              Password
+              Password <span className="text-red-700 text-sm font-bold"> * </span>
             </label>
             <div className="relative">
               <input
@@ -141,7 +142,7 @@ const Signup = () => {
 
           <div>
             <label className="block text-sm font-medium text-gray-300 mb-1">
-              Confirm Password
+              Confirm Password <span className="text-red-700 text-sm font-bold"> * </span>
             </label>
             <div className="relative">
               <input
