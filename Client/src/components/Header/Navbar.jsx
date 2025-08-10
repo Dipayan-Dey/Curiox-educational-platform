@@ -2,13 +2,15 @@ import React, { useState, useEffect } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { Server } from "../../main";
-import logo from "../../assets/curiox logo 1.png"
+import logo from "../../assets/curiox logo 1.png";
+import { toast } from "react-toastify";
+import { UserData } from "../../Context/UserContext";
 
 const Navbar = ({ isAuth, user }) => {
-  const navigate=useNavigate()
+  const navigate = useNavigate();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [isScrolled, setIsScrolled] = useState(false);
-
+  const { setisAuth, setUser } = UserData();
   useEffect(() => {
     const handleScroll = () => {
       setIsScrolled(window.scrollY > 20);
@@ -30,7 +32,7 @@ const Navbar = ({ isAuth, user }) => {
     <nav
       className={`fixed top-0 w-full z-50 transition-all duration-500 ${
         isScrolled
-          ? "bg-gray-900/95 backdrop-blur-xl border-b border-gray-700/50 shadow-xl" 
+          ? "bg-gray-900/95 backdrop-blur-xl border-b border-gray-700/50 shadow-xl"
           : "bg-transparent"
       }`}
     >
@@ -38,7 +40,7 @@ const Navbar = ({ isAuth, user }) => {
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <div className="flex items-center space-x-3 group cursor-pointer">
-              <img src={logo} alt=""  className="h-20 w-40 pt-2"/>
+            <img src={logo} alt="" className="h-20 w-40 pt-2" />
             {/* <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-purple-500 via-pink-500 to-indigo-500 flex items-center justify-center text-white font-bold text-xl shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all duration-300">
             </div> */}
             <div className="flex flex-col">
@@ -104,7 +106,9 @@ const Navbar = ({ isAuth, user }) => {
         {/* Mobile Menu */}
         <div
           className={`md:hidden transition-all duration-500 ease-in-out bg-gradient-to-br from-slate-900 via-gray-800 to-slate-900 ${
-            isMenuOpen ? "w-full max-h-screen opacity-100 py-10 rounded-b-2xl" : "max-h-0 opacity-0 py-0"
+            isMenuOpen
+              ? "w-full max-h-screen opacity-100 py-10 rounded-b-2xl"
+              : "max-h-0 opacity-0 py-0"
           } overflow-hidden`}
         >
           <div className="border-t border-gray-700/50 ">
@@ -121,14 +125,32 @@ const Navbar = ({ isAuth, user }) => {
               ))}
 
               {/* Mobile Get Started Button */}
-              <div 
-              onClick={()=>navigate("/login")}
-              className=" flex justify-center items-center pt-4 border-t border-gray-200/20">
-                <button className="w-[200px] bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 text-white px-6 py-4 rounded-xl font-semibold hover:shadow-xl transition-all duration-300">
-               Login
-                </button>
-              </div>
-              
+              {!isAuth ? (
+                <div
+                  onClick={() => navigate("/login")}
+                  className=" flex justify-center items-center pt-4 border-t border-gray-200/20"
+                >
+                  <button className="w-[200px] bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 text-white px-6 py-4 rounded-xl font-semibold hover:shadow-xl transition-all duration-300">
+                    Login
+                  </button>
+                </div>
+              ) : (
+                <div
+                  onClick={()=>{
+                    localStorage.clear();
+                       setUser([]);
+                       setisAuth(false);
+                       toast.success("Logout Successfully");
+                       navigate("/");
+                    // alert()
+                  }}
+                  className=" flex justify-center items-center pt-4 border-t border-gray-200/20"
+                >
+                  <button className=" cursor-pointer w-[200px] bg-gradient-to-r from-purple-600 via-pink-600 to-blue-600 text-white px-6 py-4 rounded-xl font-semibold hover:shadow-xl transition-all duration-300">
+                    Logout
+                  </button>
+                </div>
+              )}
             </div>
           </div>
         </div>

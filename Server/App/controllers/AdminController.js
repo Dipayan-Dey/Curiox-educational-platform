@@ -182,3 +182,26 @@ export const UpdateRole=async (req,res)=>{
     
   }
 }
+
+export const DeleteUser=async(req,res)=>{
+  try {
+    if(req.user.userMainRole!=="superadmin") return res.status(403).json({msg:"This Is Only Update Super Admin"})
+    const {id}=req.params
+  if(!id) {
+    res.status(401).json({msg:"Data not found"})
+  }
+    const alluser=await UserDb.findByIdAndDelete({_id:id})
+
+    if(!alluser){
+       res.status(401).json({msg:"Data not found"})
+    }
+
+    res.status(201).json({
+         msg:"data deleted successfully",
+         alluser
+    })
+  } catch (error) {
+    
+    res.status(500).json({ msg: "User Doesn't Deleted !" });
+  }
+}

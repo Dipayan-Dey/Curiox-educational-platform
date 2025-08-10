@@ -85,7 +85,7 @@ function AdminCourses({ user }) {
       {loading ? (
         <LoadingScreen />
       ) : (
-        <div className="bg-gradient-to-br from-slate-900 via-gray-800 to-slate-900 text-white">
+        <div className="bg-transparent text-white">
           <section className="py-20 px-4 sm:px-6 lg:px-8" id="courses">
             <div className="max-w-7xl mx-auto">
               {/* Add Course Button */}

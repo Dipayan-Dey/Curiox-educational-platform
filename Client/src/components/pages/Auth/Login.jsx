@@ -21,7 +21,7 @@ function Login() {
   const handleSubmit = async (e) => {
     // alert("")  
     e.preventDefault();
-    console.log("Submitting:", userEmail, userPassword);
+    // console.log("Submitting:", userEmail, userPassword);
     await loginUser(userEmail, userPassword, navigate,fetchMyCourses);
   };
 
