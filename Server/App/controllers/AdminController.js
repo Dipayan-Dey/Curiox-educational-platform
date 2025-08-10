@@ -147,8 +147,8 @@ export const allDeltails = async (req, res) => {
 // 689873670f25f7835e0658c5
 export const getAllUser=async (req,res)=>{
   try {
-    const excludeId = "689873670f25f7835e0658c5"; // 👈 ID you want to exclude
-    const users = await UserDb.find({ _id: { $ne: excludeId },userMainRole:{$ne :"superadmin"} })
+    // const excludeId = "689873670f25f7835e0658c5"; // 👈 ID you want to exclude
+    const users = await UserDb.find({ userMainRole:{$ne :"superadmin"} })
       .select("-subscription -createdAt -updatedAt -userPassword -__v");
   return  res.status(201).json({users})
   } catch (error) {
