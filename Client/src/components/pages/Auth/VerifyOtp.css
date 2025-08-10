@@ -1,0 +1,16 @@
+.g-recaptcha-wrapper {
+  transform: scale(0.9);      /* Adjust down for small screens */
+  transform-origin: center;   /* Keep it centered */
+}
+
+@media (max-width: 400px) {
+  .g-recaptcha-wrapper {
+    transform: scale(0.8);
+  }
+}
+
+@media (max-width: 320px) {
+  .g-recaptcha-wrapper {
+    transform: scale(0.75);
+  }
+}
