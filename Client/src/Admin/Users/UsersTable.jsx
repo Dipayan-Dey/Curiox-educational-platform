@@ -4,7 +4,7 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { Server } from "../../main";
-import { Edit3, UserCheck, Shield, Crown, Search, Filter } from "lucide-react";
+import { Edit3, UserCheck, Shield, Crown, Search, Filter,Trash } from "lucide-react";
 import ReactPaginate from "react-paginate";
 function UsersTable({ user }) {
   const navigate = useNavigate();
@@ -106,7 +106,7 @@ try {
     return <IconComponent className="w-4 h-4" />;
   };
 
-  console.log(users);
+  // console.log(users);
 
   return (
     <Layout>
@@ -246,7 +246,7 @@ try {
                               onClick={() => DeleteUser(e._id)}
                               className="cursor-pointer inline-flex items-center px-4 py-2 bg-gradient-to-r from-red-500 to-purple-500 hover:from-red-600 hover:to-purple-600 text-white text-sm font-medium rounded-lg transition-all duration-200 hover:scale-105 focus:ring-offset-slate-800 shadow-lg hover:shadow-xl"
                             >
-                              <Edit3 className="w-4 h-4 mr-2" />
+                              <Trash strokeWidth={2.25}  className="w-4 h-4 mr-2" />
                              Delete
                             </button>
                           </td>
