@@ -4,7 +4,16 @@ import { useNavigate } from "react-router-dom";
 import { toast } from "react-toastify";
 import axios from "axios";
 import { Server } from "../../main";
-import { Edit3, UserCheck, Shield, Crown, Search, Filter,Trash } from "lucide-react";
+import Swal from "sweetalert2/dist/sweetalert2.js";
+import {
+  Edit3,
+  UserCheck,
+  Shield,
+  Crown,
+  Search,
+  Filter,
+  Trash,
+} from "lucide-react";
 import ReactPaginate from "react-paginate";
 function UsersTable({ user }) {
   const navigate = useNavigate();
@@ -13,6 +22,8 @@ function UsersTable({ user }) {
   const [roleFilter, setRoleFilter] = useState("All");
   const [hoveredRow, setHoveredRow] = useState(null);
   const [pageNumber, setPageNumber] = useState(0);
+  const [isOpenImg, setIsOpenImg] = useState(false);
+  const [selectedImage, setSelectedImage] = useState(null);
   const postPerPage = 4;
   if (user.userRole !== "admin") {
     return navigate("/");
@@ -36,23 +47,51 @@ function UsersTable({ user }) {
   }, []);
 
   async function UpdateRole(id) {
-    try {
-      // console.log(id)
+    const swalWithTailwind = Swal.mixin({
+      customClass: {
+        confirmButton:
+          "bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded m-5",
+        cancelButton:
+          "bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded m-5",
+      },
+      buttonsStyling: false,
+    });
 
-      const { data } = await axios.put(
-        `${Server}/api/admin/updateUsers/${id}`,
-        {},
-        {
-          headers: {
-            token: localStorage.getItem("token"),
-          },
-        }
-      );
+    const result = await swalWithTailwind.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, Update it!",
+      cancelButtonText: "No, cancel!",
+      reverseButtons: true,
+    });
 
-      toast.success(data.msg);
-      fetchAllUsers();
-    } catch (error) {
-      toast.error(error.response.data.msg);
+    if (result.isConfirmed) {
+      try {
+        const { data } = await axios.put(
+          `${Server}/api/admin/updateUsers/${id}`,
+          {},
+          {
+            headers: {
+              token: localStorage.getItem("token"),
+            },
+          }
+        );
+
+        // toast.success(data.msg);
+        fetchAllUsers();
+
+        swalWithTailwind.fire(
+          "Updated!",
+          "Your User has been Updated.",
+          "success"
+        );
+      } catch (error) {
+        toast.error(error.response?.data?.msg || "Something went wrong");
+      }
+    } else if (result.dismiss === Swal.DismissReason.cancel) {
+      swalWithTailwind.fire("Cancelled", "Your User is safe :)", "error");
     }
   }
   // Filter users based on search and role filter
@@ -78,22 +117,55 @@ function UsersTable({ user }) {
     superadmin: Shield,
     // 'editor': Edit3
   };
-async function DeleteUser(id) {
-  // alert(id)
-try {
-    const {data}=await axios.delete(`${Server}/api/admin/deleteUser/${id}`,{
-    headers:{
-      token:localStorage.getItem("token")
+  async function DeleteUser(id) {
+    const swalWithTailwind = Swal.mixin({
+      customClass: {
+        confirmButton:
+          "bg-green-600 hover:bg-green-700 text-white font-medium py-2 px-4 rounded m-5",
+        cancelButton:
+          "bg-red-600 hover:bg-red-700 text-white font-medium py-2 px-4 rounded m-5",
+      },
+      buttonsStyling: false,
+    });
+
+    const result = await swalWithTailwind.fire({
+      title: "Are you sure?",
+      text: "You won't be able to revert this!",
+      icon: "warning",
+      showCancelButton: true,
+      confirmButtonText: "Yes, Delete it!",
+      cancelButtonText: "No, cancel!",
+      reverseButtons: true,
+    });
+
+    // alert(id)
+    if (result.isConfirmed) {
+      try {
+        const { data } = await axios.delete(
+          `${Server}/api/admin/deleteUser/${id}`,
+          {
+            headers: {
+              token: localStorage.getItem("token"),
+            },
+          }
+        );
+
+        // toast.success(data.msg);
+        fetchAllUsers();
+
+        swalWithTailwind.fire(
+          "Deleted!",
+          "Your Course has been deleted.",
+          "success"
+        );
+      } catch (error) {
+        toast.error(error.response?.data?.msg || "Something went wrong");
+      }
+    } else if (result.dismiss === Swal.DismissReason.cancel) {
+      swalWithTailwind.fire("Cancelled", "Your Course is safe :)", "error");
     }
-  })
+  }
 
-  toast.success(data.msg)
-  fetchAllUsers()
-} catch (error) {
-  toast.error(error.response.data.msg)
-}
-
-}
   const roleColors = {
     admin: "bg-gradient-to-r from-purple-500 to-pink-500",
     user: "bg-gradient-to-r from-green-500 to-emerald-500",
@@ -198,10 +270,16 @@ try {
                           <td className="px-6 py-4 whitespace-nowrap">
                             <div className="flex items-center">
                               <div className="flex-shrink-0 h-12 w-12">
-                                <div className="h-12 w-12 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 flex items-center justify-center text-white font-bold text-lg overflow-hidden">
+                                <div
+                                  className="h-12 w-12 rounded-full bg-gradient-to-r from-cyan-400 to-blue-500 flex items-center justify-center text-white font-bold text-lg overflow-hidden cursor-pointer"
+                                  onClick={() => {
+                                    setSelectedImage(e.profileImg);
+                                    setIsOpenImg(true);
+                                  }}
+                                >
                                   <img
                                     src={e.profileImg}
-                                    alt=""
+                                    alt={e.userName}
                                     className="w-full h-full object-cover"
                                   />
                                 </div>
@@ -213,6 +291,27 @@ try {
                               </div>
                             </div>
                           </td>
+
+                          {isOpenImg && (
+                            <div
+                              className="fixed inset-0 bg-black bg-opacity-75 flex items-center justify-center z-50"
+                              onClick={() => setIsOpenImg(false)} // close when clicking background
+                            >
+                              <div className="relative">
+                                <img
+                                  src={selectedImage}
+                                  alt="User"
+                                  className="max-w-[90vw] max-h-screen rounded-lg shadow-lg"
+                                />
+                                <button
+                                  className=" top-2 right-2 bg-white text-white rounded-full px-2 py-1 font-bold"
+                                  onClick={() => setIsOpenImg(false)}
+                                >
+                                  ✕
+                                </button>
+                              </div>
+                            </div>
+                          )}
 
                           <td className="px-6 py-4 whitespace-nowrap">
                             <div className="text-slate-300 hover:text-white transition-colors duration-200">
@@ -246,8 +345,11 @@ try {
                               onClick={() => DeleteUser(e._id)}
                               className="cursor-pointer inline-flex items-center px-4 py-2 bg-gradient-to-r from-red-500 to-purple-500 hover:from-red-600 hover:to-purple-600 text-white text-sm font-medium rounded-lg transition-all duration-200 hover:scale-105 focus:ring-offset-slate-800 shadow-lg hover:shadow-xl"
                             >
-                              <Trash strokeWidth={2.25}  className="w-4 h-4 mr-2" />
-                             Delete
+                              <Trash
+                                strokeWidth={2.25}
+                                className="w-4 h-4 mr-2"
+                              />
+                              Delete
                             </button>
                           </td>
                         </tr>
