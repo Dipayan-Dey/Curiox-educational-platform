@@ -1,14 +1,19 @@
 import React, { useState } from "react";
 import Layout from "../Utils/Layout";
-import { CourseData } from "../../Context/CourseContext";
-import CourseCard from "../../components/pages/courses/CourseCard";
+// import { CourseData } from "../../Context/CourseContext";
+// import CourseCard from "../../components/pages/courses/CourseCard";
 import { toast } from "react-toastify";
 import axios from "axios";
+// import { Server } from "../../main";
+// import LoadingScreen from "../../components/Loading/LoadingScreen";
+import AdminCourseCard from "./AdminCourseCard";
+import { CourseData } from "../../Context/CourseContext";
 import { Server } from "../../main";
 import LoadingScreen from "../../components/Loading/LoadingScreen";
 
-function AdminCourses({ user }) {
-  const { courses, fetchAllCourses } = CourseData();
+function AdminCourses() {
+  const { admincourses, fetchAdminOwnedCourses } = CourseData();
+  console.log(admincourses)
   const [isFormOpen, setIsFormOpen] = useState(false);
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
@@ -65,7 +70,7 @@ function AdminCourses({ user }) {
 
       toast.success(data.message);
       setLoadingBtn(false);
-    await  fetchAllCourses();
+    await  fetchAdminOwnedCourses();
       setTitle("");
       setDescription("");
       setImage("");
@@ -99,9 +104,9 @@ function AdminCourses({ user }) {
               </div>
 
               <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-                {courses && courses.length > 0 ? (
-                  courses.map((course) => (
-                    <CourseCard key={course._id} course={course} />
+                {admincourses && admincourses.length > 0 ? (
+                  admincourses.map((admincourses ,i) => (
+                    <AdminCourseCard admincourses={admincourses} />
                   ))
                 ) : (
                   <p className="text-center col-span-full text-gray-300">

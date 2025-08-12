@@ -208,13 +208,19 @@ export const DeleteUser=async(req,res)=>{
 }
 
 
-export const fetchAdminOwnedCourses=async(req,res)=>{
+export const fetchAdminOwnedCourses = async (req, res) => {
   try {
-    const courses=await Course.find({owner:req.params.id})
+    const userId = new mongoose.Types.ObjectId(req.params.id); // ✅ cast to ObjectId
+
+    const courses = await Course.find({ user: userId });
+
     res.status(200).json({
+      success: true,
+      count: courses.length,
       courses
-    })
+    });
   } catch (error) {
-   console.log(error) 
+    console.error(error);
+    res.status(500).json({ success: false, message: "Server Error" });
   }
-}
+};
