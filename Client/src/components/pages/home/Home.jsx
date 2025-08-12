@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { Award, BookOpen, Check, ChevronRight, Play, Star, Users } from "lucide-react";
 import Courses from "../courses/Courses";
+import Instructor from "../Instructors/Instructor";
 
 const Home = ({ isAuth }) => {
   const [activeFeature, setActiveFeature] = useState(0);
@@ -172,6 +173,7 @@ const Home = ({ isAuth }) => {
 
       {/* Featured Courses */}
       <Courses />
+      <Instructor/>
 
       {/* Testimonials and CTA remain unchanged for brevity */}
     </div>

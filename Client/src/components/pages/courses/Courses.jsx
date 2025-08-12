@@ -58,7 +58,7 @@ function Courses() {
   // }, [isAuth, user, navigate]);
 
   // 🛑 Prevent rendering for admins
- if (isAuth && user?.userRole === "admin") {
+ if (isAuth && user?.userRole === "admin" && user?.userMainRole !== "superadmin") {
   return (
     <div className="flex flex-col items-center justify-center min-h-[60vh] text-center p-6 bg-transparent rounded-xl shadow-md">
       <h1 className="text-2xl md:text-3xl font-bold text-white">

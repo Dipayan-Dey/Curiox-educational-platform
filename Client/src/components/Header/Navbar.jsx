@@ -24,7 +24,7 @@ const Navbar = ({ isAuth, user }) => {
     { name: "Home", href: "/" },
     { name: "Courses", href: "/courses" },
     { name: "About", href: "/about" },
-    { name: "Instructors", href: "#instructors" },
+    { name: "Instructors", href: "/instructors" },
     { name: "Account", href: "/account" },
   ];
 
