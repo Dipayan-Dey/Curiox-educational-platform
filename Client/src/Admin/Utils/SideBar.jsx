@@ -63,6 +63,7 @@ const {user}=UserData()
 
   const handleLogout = () => {
     localStorage.removeItem("token");
+    localStorage.removeItem("userId");
     window.location.href = "/";
   };
 const filteredMenuItems = menuItems.filter((item) => {

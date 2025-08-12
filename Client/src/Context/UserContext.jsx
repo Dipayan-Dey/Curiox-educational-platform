@@ -42,6 +42,7 @@ export const UserContextProvider = ({ children }) => {
       // console.log("Response:", data); // ✅ DEBUG LINE
       toast.success(data.message);
       localStorage.setItem("token", data.token);
+      // localStorage.setItem("userId", data.user._id);
       //  localStorage.setItem("tokenCreatedAt", Date.now().toString());
       setUser(data.user);
       setisAuth(true);

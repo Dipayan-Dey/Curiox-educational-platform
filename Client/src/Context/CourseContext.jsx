@@ -8,7 +8,7 @@ export const CourseContextProvide = ({ children }) => {
   const [courses, setCourse] = useState();
   const [course, setCours] = useState();
   const [myCourses, setMyCourses] = useState([]);
-  const [admincourses, setAdminCourses] = useState([]);
+  // const [admincourses, setAdminCourses] = useState([]);
 
   async function fetchAllCourses() {
     try {
@@ -29,19 +29,7 @@ export const CourseContextProvide = ({ children }) => {
       console.log(error);
     }
   }
-async function fetchAdminOwnedCourses(userId) {
-  try {
-    const {data}=await axios.get(`${Server}/api/admin/getadmincourse/${userId}`,{
-      headers:{
-        token:localStorage.getItem("token")
-      }
-    })
 
-    setAdminCourses(data.courses)
-  } catch (error) {
-    console.log(error)
-  }
-}
   async function fetchMyCourses() {
     try {
       const { data } = await axios.get(`${Server}/api/course/getmycourses`, {
@@ -68,8 +56,8 @@ async function fetchAdminOwnedCourses(userId) {
         course,
         fetchMyCourses,
         myCourses,
-        fetchAdminOwnedCourses,
-        admincourses
+        // fetchAdminOwnedCourses,
+        // admincourses
       }}
     >
       {children}

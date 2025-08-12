@@ -1,10 +1,11 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   BrowserRouter,
   Routes,
   Route,
   useLocation,
   Navigate,
+  useNavigate,
 } from "react-router-dom";
 import Navbar from "./components/Header/Navbar";
 import Footer from "./components/Footer/Footer";
@@ -29,10 +30,17 @@ import Docs from "./components/pages/Doccumentation/Docs";
 
 // 🧠 Move `useLocation` logic here
 const AppContent = () => {
+  const navigate=useNavigate()
   const { isAuth, user, loading } = UserData();
   const location = useLocation();
   const hideNavbarFooterPaths = ["/login", "/signup", "/verify","/admin/dashboard","/admin/users","/admin/courses",""];
   const hideShow = !hideNavbarFooterPaths.includes(location.pathname);
+   useEffect(() => {
+    if (isAuth && user?.userRole === "admin" && location.pathname === "/courses") {
+      navigate("/account", { replace: true });
+    }
+  }, [isAuth, user, location.pathname, navigate]);
+
 
   if (loading) {
     return <LoadingScreen />;

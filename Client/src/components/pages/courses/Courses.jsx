@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useEffect } from "react";
 import {
   Award,
   BookOpen,
@@ -10,41 +10,73 @@ import {
 } from "lucide-react";
 import { CourseData } from "../../../Context/CourseContext";
 import CourseCard from "./CourseCard";
+import { UserData } from "../../../Context/UserContext";
+import { useNavigate } from "react-router-dom";
 
-const dummycourses = [
-  {
-    title: "Web Development Mastery",
-    students: "2.4k",
-    rating: 4.9,
-    price: "$99",
-    image: "🌐",
-  },
-  {
-    title: "Data Science Fundamentals",
-    students: "1.8k",
-    rating: 4.8,
-    price: "$129",
-    image: "📊",
-  },
-  {
-    title: "Digital Marketing Pro",
-    students: "3.2k",
-    rating: 4.9,
-    price: "$79",
-    image: "📈",
-  },
-  {
-    title: "UX/UI Design Complete",
-    students: "1.5k",
-    rating: 4.7,
-    price: "$109",
-    image: "🎨",
-  },
-];
+// const dummycourses = [
+//   {
+//     title: "Web Development Mastery",
+//     students: "2.4k",
+//     rating: 4.9,
+//     price: "$99",
+//     image: "🌐",
+//   },
+//   {
+//     title: "Data Science Fundamentals",
+//     students: "1.8k",
+//     rating: 4.8,
+//     price: "$129",
+//     image: "📊",
+//   },
+//   {
+//     title: "Digital Marketing Pro",
+//     students: "3.2k",
+//     rating: 4.9,
+//     price: "$79",
+//     image: "📈",
+//   },
+//   {
+//     title: "UX/UI Design Complete",
+//     students: "1.5k",
+//     rating: 4.7,
+//     price: "$109",
+//     image: "🎨",
+//   },
+// ];
 
 function Courses() {
   const { courses } = CourseData();
   // console.log(courses);
+    const { user, isAuth } = UserData();
+  const navigate = useNavigate();
+
+  // 🚀 Redirect admins away
+  // useEffect(() => {
+  //   if (isAuth && user?.userRole === "admin") {
+  //     navigate("/account", { replace: true });
+  //   }
+  // }, [isAuth, user, navigate]);
+
+  // 🛑 Prevent rendering for admins
+ if (isAuth && user?.userRole === "admin") {
+  return (
+    <div className="flex flex-col items-center justify-center min-h-[60vh] text-center p-6 bg-transparent rounded-xl shadow-md">
+      <h1 className="text-2xl md:text-3xl font-bold text-white">
+        Go to your <span className="text-indigo-600">Account</span> page
+      </h1>
+      <p className="mt-2 text-white">
+        and view all your created courses from there.
+      </p>
+      <a
+        href="/account"
+        className="mt-6 px-6 py-3 bg-indigo-600 text-white rounded-lg shadow hover:bg-indigo-700 transition"
+      >
+        Go to Account
+      </a>
+    </div>
+  );
+}
+
   return (
     <div className=" bg-gradient-to-br from-slate-900 via-gray-800 to-slate-900 text-white">
       <section className="py-20 px-4 sm:px-6 lg:px-8" id="courses">
