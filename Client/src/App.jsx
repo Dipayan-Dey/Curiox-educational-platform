@@ -27,13 +27,14 @@ import AdminDashboard from "./Admin/Dashboard/AdminDashboard";
 import AdminCourses from "./Admin/Courses/AdminCourses";
 import UsersTable from "./Admin/Users/UsersTable";
 import Docs from "./components/pages/Doccumentation/Docs";
+import Analytics from "./Admin/Analytics/Analytics";
 
 // 🧠 Move `useLocation` logic here
 const AppContent = () => {
   const navigate=useNavigate()
   const { isAuth, user, loading } = UserData();
   const location = useLocation();
-  const hideNavbarFooterPaths = ["/login", "/signup", "/verify","/admin/dashboard","/admin/users","/admin/courses",""];
+  const hideNavbarFooterPaths = ["/login", "/signup", "/verify","/admin/dashboard","/admin/users","/admin/courses","/admin/analytics"];
   const hideShow = !hideNavbarFooterPaths.includes(location.pathname);
    useEffect(() => {
     if (isAuth && user?.userRole === "admin" && location.pathname === "/courses") {
@@ -69,6 +70,7 @@ const AppContent = () => {
         <Route path="/admin/dashboard" element={isAuth? <AdminDashboard user={user} /> :<Login/> } />
         <Route path="/admin/courses" element={isAuth? <AdminCourses user={user} /> :<Login/> } />
         <Route path="/admin/users" element={isAuth? <UsersTable user={user} /> :<Login/> } />
+        <Route path="/admin/analytics" element={isAuth? <Analytics user={user} /> :<Login/> } />
       </Routes>
       {hideShow && <Footer />}
     </>

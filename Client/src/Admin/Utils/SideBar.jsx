@@ -63,11 +63,17 @@ const {user}=UserData()
 
   const handleLogout = () => {
     localStorage.removeItem("token");
-    localStorage.removeItem("userId");
+    // localStorage.removeItem("userId");
     window.location.href = "/";
   };
 const filteredMenuItems = menuItems.filter((item) => {
   if (item.id === "users" && user?.userMainRole !== "superadmin") {
+    return false; // hide Users menu if not superadmin
+  }
+  if (item.id === "dashboard" && user?.userMainRole !== "superadmin") {
+    return false; // hide Users menu if not superadmin
+  }
+  if (item.id === "analytics" && user?.userMainRole !== "superadmin") {
     return false; // hide Users menu if not superadmin
   }
   return true;
@@ -86,7 +92,7 @@ const filteredMenuItems = menuItems.filter((item) => {
           }`}
         >
           <h2 className="text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent whitespace-nowrap">
-            Admin Panel
+            {user?.userMainRole==="superadmin" ? "Super Admin Pannel":"Admin Pannel"}
           </h2>
         </div>
         <button
