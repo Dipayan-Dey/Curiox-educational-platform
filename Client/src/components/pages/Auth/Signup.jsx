@@ -14,6 +14,7 @@ const Signup = () => {
     userPassword: "",
     confirmPassword: "",
     profilePhoto: null,
+    userRole: "",
   });
 
   const [showPassword, setShowPassword] = useState(false);
@@ -28,8 +29,14 @@ const Signup = () => {
   const handleSubmit = async (e) => {
     e.preventDefault();
 
-    const { userName, userEmail, userPassword, confirmPassword, profilePhoto } =
-      formData;
+    const {
+      userName,
+      userEmail,
+      userPassword,
+      confirmPassword,
+      profilePhoto,
+      userRole,
+    } = formData;
 
     if (!userName || !userEmail || !userPassword || !confirmPassword) {
       toast.error("All fields are required.");
@@ -46,6 +53,7 @@ const Signup = () => {
       userEmail,
       profilePhoto,
       userPassword,
+      userRole,
       navigate
     );
   };
@@ -78,7 +86,8 @@ const Signup = () => {
         <div className="space-y-4">
           <div>
             <label className="block text-sm font-medium text-gray-300 mb-1">
-              Full Name <span className="text-red-700 text-sm font-bold"> * </span>
+              Full Name{" "}
+              <span className="text-red-700 text-sm font-bold"> * </span>
             </label>
             <input
               type="text"
@@ -92,7 +101,8 @@ const Signup = () => {
 
           <div>
             <label className="block text-sm font-medium text-gray-300 mb-1">
-              Email Address <span className="text-red-700 text-sm font-bold"> * </span>
+              Email Address{" "}
+              <span className="text-red-700 text-sm font-bold"> * </span>
             </label>
             <input
               type="email"
@@ -105,7 +115,8 @@ const Signup = () => {
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-300 mb-1">
-              Profile Photo <span className="text-red-700 text-sm font-bold"> * </span>
+              Profile Photo{" "}
+              <span className="text-red-700 text-sm font-bold"> * </span>
             </label>
             <input
               type="file"
@@ -119,7 +130,8 @@ const Signup = () => {
           </div>
           <div>
             <label className="block text-sm font-medium text-gray-300 mb-1">
-              Password <span className="text-red-700 text-sm font-bold"> * </span>
+              Password{" "}
+              <span className="text-red-700 text-sm font-bold"> * </span>
             </label>
             <div className="relative">
               <input
@@ -142,7 +154,8 @@ const Signup = () => {
 
           <div>
             <label className="block text-sm font-medium text-gray-300 mb-1">
-              Confirm Password <span className="text-red-700 text-sm font-bold"> * </span>
+              Confirm Password{" "}
+              <span className="text-red-700 text-sm font-bold"> * </span>
             </label>
             <div className="relative">
               <input
@@ -161,6 +174,23 @@ const Signup = () => {
                 {showConfirmPassword ? <EyeOff size={18} /> : <Eye size={18} />}
               </button>
             </div>
+          </div>
+
+          <div>
+            <label className="block text-sm font-medium text-gray-300 mb-1">
+              Choose Your Role{" "}
+              <span className="text-red-700 text-sm font-bold"> * </span>
+            </label>
+            <select
+              name="userRole"
+              value={formData.userRole}
+              onChange={handleChange}
+              className="w-full bg-gray-700/30 border border-gray-600/50 rounded px-3 py-2 text-sm text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-indigo-500"
+            >
+              <option value="">Select Role</option>
+              <option value="user">Student</option>
+              <option value="admin">Instructor</option>
+            </select>
           </div>
         </div>
 

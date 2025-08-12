@@ -79,7 +79,7 @@ export const UserContextProvider = ({ children }) => {
 // }, []);
 
 
- async function registerUser(userName, userEmail, profilePhoto, userPassword, navigate) {
+ async function registerUser(userName, userEmail, profilePhoto, userPassword, userRole,navigate) {
   setBtnLoading(true);
   try {
     const formData = new FormData();
@@ -87,12 +87,9 @@ export const UserContextProvider = ({ children }) => {
     formData.append("userEmail", userEmail);
     formData.append("userPassword", userPassword);
     formData.append("profilePhoto", profilePhoto); // this should be the actual file
+    formData.append("userRole", userRole); // this should be the actual file
 
-    const { data } = await axios.post(`${Server}/api/user/register`, formData, {
-      headers: {
-        "Content-Type": "multipart/form-data",
-      },
-    });
+    const { data } = await axios.post(`${Server}/api/user/register`, formData);
 
     toast.success(data.message);
     localStorage.setItem("activationToken", data.activationToken);

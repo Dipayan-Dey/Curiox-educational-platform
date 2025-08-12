@@ -9,14 +9,14 @@ export const register = async (req, res) => {
     // console.log("📩 Request body:", req.body);
     // console.log("📂 Uploaded files:", req.files);
 
-    const { userName, userEmail, userPassword } = req.body;
+    const { userName, userEmail, userPassword,userRole } = req.body;
 
     // Accept either 'profilePhoto' or 'file' as the uploaded image
     const uploadedFile =
       req.files?.profilePhoto?.[0] || req.files?.file?.[0] || null;
 
     // ✅ Fixed validation
-    if (!userName || !userEmail || !userPassword || !uploadedFile) {
+    if (!userName || !userEmail || !userPassword || !uploadedFile || !userRole) {
       return res.status(400).json({ msg: "All fields are required" });
     }
 
@@ -32,6 +32,7 @@ export const register = async (req, res) => {
       userEmail,
       userPassword: hashedPassword,
       profileImg: uploadedFile.path, // ✅ Cloudinary URL
+      userRole
     };
 
     const otp = Math.floor(100000 + Math.random() * 900000);
@@ -47,6 +48,7 @@ export const register = async (req, res) => {
 
     res.status(200).json({
       msg: "Registration initiated. OTP sent to email.",
+      otp,
       activationToken,
     });
   } catch (error) {
@@ -80,6 +82,7 @@ export const verifyUser = async (req, res) => {
       userEmail: verify.user.userEmail,
       userPassword: verify.user.userPassword,
       profileImg: verify.user.profileImg,
+      userRole:verify.user.userRole
     });
 
     console.log("Registration successfull");

@@ -64,6 +64,23 @@ const AdminCourseCard = ({ admincourses }) => {
         <p>No admincourses found</p>
       )}
     </div>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
   );
 };
 
