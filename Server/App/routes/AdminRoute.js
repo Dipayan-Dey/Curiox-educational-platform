@@ -7,6 +7,7 @@ import {
   deleteCourse,
   deleteLacture,
   DeleteUser,
+  fetchAdminOwnedCourses,
   getAllUser,
   UpdateRole,
   uploadLancture,
@@ -30,5 +31,6 @@ AdminRoute.get("/allDetails", isAuth, isAdmin, allDeltails);
 AdminRoute.get("/allUsers", isAuth, isAdmin, getAllUser);
 AdminRoute.put("/updateUsers/:id", isAuth, UpdateRole);
 AdminRoute.delete("/deleteUser/:id", isAuth, DeleteUser);
+AdminRoute.get("/getadmincourse/:id",isAuth,isAdmin,fetchAdminOwnedCourses)
 
 export default AdminRoute;

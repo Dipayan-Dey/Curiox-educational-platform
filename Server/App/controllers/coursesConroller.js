@@ -16,6 +16,19 @@ export const getAllCourses = async (req, res) => {
   }
 };
 
+
+// export const fetchAdminOwnedCourses=async(req,res)=>{
+//   try {
+//     const courses=await Course.find({user:req.params.id})
+//     res.status(200).json({
+//       courses
+//     })
+//   } catch (error) {
+//    console.log(error) 
+//   }
+// }
+
+
 export const getSingleCourse = async (req, res) => {
   try {
     const course = await Course.findById(req.params.id);

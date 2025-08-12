@@ -3,9 +3,9 @@ import { Lacture } from "../models/Lacture.js";
 import { rm } from "fs"; //delete from folder
 import { v2 as cloudinary } from "cloudinary";
 
-import { promisify } from "util";
+// import { promisify } from "util";
 
-import fs from "fs";
+// import fs from "fs";
 import { UserDb } from "../models/UserModel.js";
 import getPublicId from "../utils/getPublicId.js";
 // import { Course } from './../models/Course';
@@ -28,6 +28,7 @@ export const createCourse = async (req, res) => {
       image: file.path,
       duration,
       price,
+      owner:req.user._id
     });
 
     res.status(201).json({ message: "Course Created Successfully" });
@@ -203,5 +204,17 @@ export const DeleteUser=async(req,res)=>{
   } catch (error) {
     
     res.status(500).json({ msg: "User Doesn't Deleted !" });
+  }
+}
+
+
+export const fetchAdminOwnedCourses=async(req,res)=>{
+  try {
+    const courses=await Course.find({owner:req.params.id})
+    res.status(200).json({
+      courses
+    })
+  } catch (error) {
+   console.log(error) 
   }
 }
