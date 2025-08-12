@@ -8,6 +8,7 @@ import { v2 as cloudinary } from "cloudinary";
 // import fs from "fs";
 import { UserDb } from "../models/UserModel.js";
 import getPublicId from "../utils/getPublicId.js";
+import mongoose from "mongoose";
 // import { Course } from './../models/Course';
 // import { Lacture } from './../models/Lacture';
 export const createCourse = async (req, res) => {
@@ -210,9 +211,15 @@ export const DeleteUser=async(req,res)=>{
 
 export const fetchAdminOwnedCourses = async (req, res) => {
   try {
-    const userId = new mongoose.Types.ObjectId(req.params.id); // ✅ cast to ObjectId
+    // ✅ Validate the ID format
+    if (!mongoose.Types.ObjectId.isValid(req.params.id)) {
+      return res.status(400).json({ success: false, message: "Invalid User ID" });
+    }
 
-    const courses = await Course.find({ user: userId });
+    const userId = new mongoose.Types.ObjectId(req.params.id);
+
+    // ✅ Use the correct field name from schema: "owner"
+    const courses = await Course.find({ owner: userId });
 
     res.status(200).json({
       success: true,
@@ -220,7 +227,7 @@ export const fetchAdminOwnedCourses = async (req, res) => {
       courses
     });
   } catch (error) {
-    console.error(error);
+    console.error("Error fetching admin courses:", error);
     res.status(500).json({ success: false, message: "Server Error" });
   }
 };

@@ -29,9 +29,9 @@ export const CourseContextProvide = ({ children }) => {
       console.log(error);
     }
   }
-async function fetchAdminOwnedCourses(id) {
+async function fetchAdminOwnedCourses(userId) {
   try {
-    const {data}=await axios.get(`${Server}/api/admin/getadmincourse/${id}`,{
+    const {data}=await axios.get(`${Server}/api/admin/getadmincourse/${userId}`,{
       headers:{
         token:localStorage.getItem("token")
       }
