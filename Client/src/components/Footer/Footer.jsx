@@ -10,7 +10,8 @@ import {
   Instagram, 
   Linkedin,
   Youtube,
-  ArrowUp
+  ArrowUp,
+  Github
 } from 'lucide-react';
 
 const Footer = () => {
@@ -62,11 +63,11 @@ const Footer = () => {
   ];
 
   const socialLinks = [
-    { name: 'Facebook', icon: Facebook, href: '#', color: 'hover:text-blue-500' },
-    { name: 'Twitter', icon: Twitter, href: '#', color: 'hover:text-sky-500' },
-    { name: 'Instagram', icon: Instagram, href: '#', color: 'hover:text-pink-500' },
-    { name: 'LinkedIn', icon: Linkedin, href: '#', color: 'hover:text-blue-600' },
-    { name: 'YouTube', icon: Youtube, href: '#', color: 'hover:text-red-500' }
+    { name: 'Facebook', icon: Facebook, href: 'https://www.facebook.com/dipayan.dey.489987', color: 'hover:text-blue-500' },
+    { name: 'Twitter', icon: Twitter, href: 'https://x.com/DipayanDey1711?t=jXzyq4QeQY_OtsrFp6jYvw&s=09', color: 'hover:text-sky-500' },
+    { name: 'Instagram', icon: Instagram, href: 'https://www.instagram.com/dipayan.official.2006/', color: 'hover:text-pink-500' },
+    { name: 'LinkedIn', icon: Linkedin, href: 'https://www.linkedin.com/in/dipayan-dey-033b38309/', color: 'hover:text-blue-600' },
+    { name: 'YouTube', icon: Github , href: 'https://github.com/Dipayan-Dey', color: 'hover:text-grey-500' }
   ];
 
   return (
@@ -143,7 +144,7 @@ const Footer = () => {
         </div>
 
         {/* Newsletter Section */}
-        <div className="mt-12 pt-8 border-t border-gray-700">
+        {/* <div className="mt-12 pt-8 border-t border-gray-700">
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div>
               <h4 className="text-xl font-semibold mb-2 text-white">
@@ -165,7 +166,7 @@ const Footer = () => {
               </button>
             </div>
           </div>
-        </div>
+        </div> */}
 
         {/* Bottom Footer */}
         <div className="mt-12 pt-8 border-t border-gray-700 flex flex-col md:flex-row justify-between items-center space-y-4 md:space-y-0">

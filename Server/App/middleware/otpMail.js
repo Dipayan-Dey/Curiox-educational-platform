@@ -876,7 +876,7 @@ const html = `<!DOCTYPE html>
             
             <!-- Call to Action -->
             <div class="cta-section">
-                <a href="#" class="cta-button">Start Your Learning Journey</a>
+                <a href="https://curiox.vercel.app/" class="cta-button">Start Your Learning Journey</a>
             </div>
         </div>
         
