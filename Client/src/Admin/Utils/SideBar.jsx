@@ -92,7 +92,7 @@ const filteredMenuItems = menuItems.filter((item) => {
           }`}
         >
           <h2 className="text-xl font-bold bg-gradient-to-r from-blue-400 to-purple-500 bg-clip-text text-transparent whitespace-nowrap">
-            {user?.userMainRole==="superadmin" ? "Super Admin Pannel":"Admin Pannel"}
+            {user?.userMainRole==="superadmin" ? "Super Admin Panel":"Admin Panel"}
           </h2>
         </div>
         <button

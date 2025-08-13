@@ -152,7 +152,7 @@ const Account = ({ user }) => {
                               <div className="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center group-hover:bg-white/30 transition-all duration-300">
                                 <span className="text-lg">⚡</span>
                               </div>
-                              <span className="font-bold">{user.userMainRole==="superadmin"?"Super Admin Pannel":"Add Course "}</span>
+                              <span className="font-bold">{user.userMainRole==="superadmin"?"Super Admin Panel":"Add Course "}</span>
                               <ArrowRight
                                 className="group-hover:translate-x-1 transition-transform duration-300"
                                 size={18}
