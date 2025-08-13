@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Menu, X, ChevronDown } from "lucide-react";
 import { Link, useNavigate } from "react-router-dom";
 import { Server } from "../../main";
-import logo from "../../assets/curiox logo 1.png";
+import logo from "../../assets/navlogo.png";
 import { toast } from "react-toastify";
 import { UserData } from "../../Context/UserContext";
 
@@ -40,7 +40,7 @@ const Navbar = ({ isAuth, user }) => {
         <div className="flex justify-between items-center h-20">
           {/* Logo */}
           <div className="flex items-center space-x-3 group cursor-pointer">
-            <img src={logo} alt="" className="h-20 w-40 pt-2" />
+            <img src={logo} alt="" className="h-40 md:h-50 w-60 md:w-80 pt-2" />
             {/* <div className="w-12 h-12 rounded-2xl bg-gradient-to-br from-purple-500 via-pink-500 to-indigo-500 flex items-center justify-center text-white font-bold text-xl shadow-lg group-hover:shadow-xl group-hover:scale-105 transition-all duration-300">
             </div> */}
             <div className="flex flex-col">
