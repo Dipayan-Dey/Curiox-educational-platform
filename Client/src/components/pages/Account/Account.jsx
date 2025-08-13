@@ -137,9 +137,12 @@ const Account = ({ user }) => {
                       }
 
                         {/* Admin Dashboard Button - Only visible for admin */}
-                        {user && user.userRole === "admin" && (
+                        {user && (user.userRole === "admin"||user.userMainRole === "superadmin") && (
                           <button
-                            onClick={() => navigate(`/admin/dashboard`)}
+                            onClick={() => navigate(
+
+                              user.userMainRole === "superadmin"?"/admin/dashboard":"/admin/courses"
+                            )}
                             className="group relative flex-1 bg-gradient-to-r from-emerald-600 to-teal-600 text-white py-4 px-6 lg:px-8 rounded-2xl font-semibold overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-emerald-500/25 focus:outline-none focus:ring-4 focus:ring-emerald-500/30 transform hover:scale-[1.02] active:scale-[0.98] min-h-[60px]"
                           >
                             <div className="absolute inset-0 bg-gradient-to-r from-emerald-700 to-teal-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
@@ -149,7 +152,7 @@ const Account = ({ user }) => {
                               <div className="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center group-hover:bg-white/30 transition-all duration-300">
                                 <span className="text-lg">⚡</span>
                               </div>
-                              <span className="font-bold">Admin Panel</span>
+                              <span className="font-bold">{user.userMainRole==="superadmin"?"Super Admin Pannel":"Add Course "}</span>
                               <ArrowRight
                                 className="group-hover:translate-x-1 transition-transform duration-300"
                                 size={18}

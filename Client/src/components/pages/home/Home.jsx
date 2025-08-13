@@ -2,6 +2,7 @@ import { useEffect, useState } from "react";
 import { Award, BookOpen, Check, ChevronRight, Play, Star, Users } from "lucide-react";
 import Courses from "../courses/Courses";
 import Instructor from "../Instructors/Instructor";
+import About from "../About/About";
 
 const Home = ({ isAuth }) => {
   const [activeFeature, setActiveFeature] = useState(0);
@@ -172,6 +173,7 @@ const Home = ({ isAuth }) => {
       </section>
 
       {/* Featured Courses */}
+      <About/>
       <Courses />
       <Instructor/>
 
