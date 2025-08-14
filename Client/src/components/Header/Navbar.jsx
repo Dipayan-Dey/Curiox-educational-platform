@@ -5,6 +5,7 @@ import { Server } from "../../main";
 import logo from "../../assets/navlogo.png";
 import { toast } from "react-toastify";
 import { UserData } from "../../Context/UserContext";
+import titlelogo from "../../assets/titlelogo.png"
 
 const Navbar = ({ isAuth, user }) => {
   const navigate = useNavigate();
@@ -52,10 +53,10 @@ const Navbar = ({ isAuth, user }) => {
             {/* Mobile Menu Button - Left */}
             <button
               onClick={() => setIsMenuOpen(!isMenuOpen)}
-              className="md:hidden p-2 rounded-lg r-2 text-white hover:text-gray-900 hover:bg-gray-100 transition-colors duration-200"
+              className="md:hidden p-2 rounded-lg r-2 text-white hover:text-gray-900 hover:bg-gray-50 transition-colors duration-200"
               aria-label="Toggle menu"
             >
-              <Menu className="w-6 h-6" />
+              <Menu className="w-8 h-8" />
             </button>
 
             {/* Logo */}
@@ -118,12 +119,12 @@ const Navbar = ({ isAuth, user }) => {
         >
           {/* Sidebar Header */}
           <div className="flex items-center justify-between p-6 border-b border-gray-200">
-            <img src={logo} alt="CurioX" className="h-8 w-auto" />
+            <img src={titlelogo} alt="CurioX" className="h-15 w-auto" />
             <button
               onClick={() => setIsMenuOpen(false)}
               className="p-2 rounded-lg text-gray-600 hover:text-gray-900 hover:bg-gray-100 transition-colors duration-200"
             >
-              <X className="w-5 h-5" />
+              <X className="w-8 h-8" />
             </button>
           </div>
 
