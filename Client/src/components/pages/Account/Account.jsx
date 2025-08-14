@@ -73,7 +73,7 @@ return (
               <div className="flex flex-col items-center space-y-6">
                 {/* Profile Image */}
                 <div className="relative group">
-                  <div className="absolute -inset-3 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full opacity-75 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div>
+                  {/* <div className="absolute -inset-3 bg-gradient-to-r from-indigo-500 to-purple-500 rounded-full opacity-75 group-hover:opacity-100 transition-opacity duration-300 blur-sm"></div> */}
                   <img
                     src={user.profileImg}
                     alt="Profile"
@@ -118,18 +118,18 @@ return (
                         user && user.userRole==="user"&&(
                             <button
                           onClick={() => navigate(`/${user._id}/dashboard`)}
-                          className="group relative flex-1 bg-gradient-to-r from-indigo-600 to-purple-600 text-white py-4 px-6 lg:px-8 rounded-2xl font-semibold overflow-hidden transition-all duration-300 hover:shadow-xl hover:shadow-purple-500/25 focus:outline-none focus:ring-4 focus:ring-purple-500/30 transform hover:scale-[1.02] active:scale-[0.98] min-h-[60px]"
+                          className="cursor-pointer group relative flex-1 bg-purple-700 hover:bg-purple-600 text-white py-4 px-6 lg:px-8 rounded-2xl font-semibold overflow-hidden     min-h-[60px]"
                         >
-                          <div className="absolute inset-0 bg-gradient-to-r from-indigo-700 to-purple-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-                          <div className="absolute inset-0 -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent"></div>
+                          {/* <div className="absolute inset-0 bg-gradient-to-r from-indigo-700 to-purple-700 opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
+                          <div className="absolute inset-0 -skew-x-12 -translate-x-full group-hover:translate-x-full transition-transform duration-1000 bg-gradient-to-r from-transparent via-white/20 to-transparent"></div> */}
 
                           <div className="relative flex items-center justify-center gap-3 text-base lg:text-lg">
-                            <div className="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center group-hover:bg-white/30 transition-all duration-300">
+                            {/* <div className="w-8 h-8 bg-white/20 rounded-lg flex items-center justify-center group-hover:bg-white/30 transition-all duration-300">
                               <Settings
                                 className="group-hover:rotate-90 transition-transform duration-300"
                                 size={18}
                               />
-                            </div>
+                            </div> */}
                             <span className="font-bold">My Courses</span>
                             <ArrowRight
                               className="group-hover:translate-x-1 transition-transform duration-300"

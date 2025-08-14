@@ -71,7 +71,7 @@ function Courses() {
   // Prevent rendering for admins (except superadmin)
   if (isAuth && user?.userRole === "admin" && user?.userMainRole !== "superadmin") {
     return (
-      <div className="flex flex-col items-center justify-center min-h-[60vh] text-center p-6 bg-transparent rounded-xl shadow-md">
+      <div className="flex flex-col items-center justify-center min-h-[60vh] text-center p-6 bg-gray-900 rounded-xl shadow-md">
         <h1 className="text-2xl md:text-3xl font-bold text-white">
           Go to your <span className="text-indigo-600">Account</span> page
         </h1>
@@ -89,7 +89,7 @@ function Courses() {
   }
 
   return (
-    <div className="bg-gradient-to-br from-slate-900 via-gray-800 to-slate-900 text-white">
+    <div className="bg-gray-900 text-white">
       <section className="py-20 px-4 sm:px-6 lg:px-8" id="courses">
         <div className="max-w-7xl mx-auto">
           {/* Header Section */}

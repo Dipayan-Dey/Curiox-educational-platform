@@ -62,18 +62,18 @@ function CourseCard({ course }) {
   }
 
   return (
-    <div className="w-80 h-[500px] mx-auto bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform hover:scale-[1.02] hover:-translate-y-2 border border-gray-100 group flex flex-col">
+    <div className="w-80 h-[500px] mx-auto bg-gradient-to-br from-white to-gray-50 rounded-2xl shadow-lg overflow-hidden hover:shadow-2xl transition-all duration-300 transform  hover:-translate-y-2 border border-gray-100 group flex flex-col">
       <div className="relative overflow-hidden flex-shrink-0">
         <img
           src={course.image}
           alt={course.title}
-          className="w-full h-48 object-cover transition-transform duration-700 group-hover:scale-110"
+          className="w-full h-48 object-cover transition-transform duration-700 "
         />
         <div className="absolute inset-0 bg-gradient-to-t from-black/30 via-transparent to-transparent opacity-0 group-hover:opacity-100 transition-opacity duration-300"></div>
-        <div className="absolute top-3 right-3 bg-gradient-to-r from-indigo-600 to-purple-600 text-white text-xs font-medium px-3 py-1.5 rounded-full shadow-lg backdrop-blur-sm border border-white/20">
+        <div className="absolute top-3 right-3 bg-blue-500 text-white text-xs font-medium px-3 py-1.5 rounded-full shadow-lg backdrop-blur-sm border border-white/20">
           {course.category}
         </div>
-        <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div>
+        {/* <div className="absolute bottom-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500 origin-left"></div> */}
       </div>
 
       <div className="p-6 relative flex-grow flex flex-col">
@@ -148,7 +148,7 @@ function CourseCard({ course }) {
               ) : (
                 <button
                   onClick={() => navigate(`/course/study/${course._id}`)}
-                  className="w-full bg-gradient-to-r from-indigo-500 to-purple-600 text-white py-3 px-6 rounded-xl hover:from-indigo-600 hover:to-purple-700 active:from-indigo-700 active:to-purple-800 transition-all duration-300 font-semibold text-base focus:outline-none focus:ring-4 focus:ring-purple-500/30 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center justify-center group/btn"
+                  className="cursor-pointer w-full bg-[#6b46c1] text-white py-3 px-6 rounded-xl transition-all duration-300 font-semibold text-base focus:outline-none focus:ring-4 focus:ring-purple-500/30 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center justify-center group/btn"
                 >
                   <span className="mr-2">👨‍🏫</span>
                   Study Course
@@ -174,7 +174,7 @@ function CourseCard({ course }) {
           {user && user.userRole === "admin" && (
             <button
               onClick={() => deletecourseHandler(course._id)}
-              className="w-full bg-gradient-to-r from-red-500 to-red-600 text-white py-3 px-6 rounded-xl hover:from-red-600 hover:to-red-700 active:from-red-700 active:to-red-800 transition-all duration-300 font-semibold text-base focus:outline-none focus:ring-4 focus:ring-red-500/30 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center justify-center group/btn"
+              className="cursor-pointer w-full bg-gradient-to-r from-red-500 to-red-600 text-white py-3 px-6 rounded-xl hover:from-red-600 hover:to-red-700 active:from-red-700 active:to-red-800 transition-all duration-300 font-semibold text-base focus:outline-none focus:ring-4 focus:ring-red-500/30 shadow-lg hover:shadow-xl transform hover:-translate-y-0.5 flex items-center justify-center group/btn"
             >
               <span className="mr-2">🗑️</span>
               Delete Course
