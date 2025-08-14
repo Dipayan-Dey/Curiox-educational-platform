@@ -13,10 +13,11 @@ import { CourseData } from "../../../Context/CourseContext";
 import CourseCard from "./CourseCard";
 import { UserData } from "../../../Context/UserContext";
 import { useNavigate } from "react-router-dom";
+import ProfessionalLoadingScreen from "../../Loading/LoadingScreen";
 
 function Courses() {
   const { courses } = CourseData();
-  const { user, isAuth } = UserData();
+  const { user, isAuth,loading } = UserData();
   const navigate = useNavigate();
   const scrollContainerRef = useRef(null);
   const [canScrollLeft, setCanScrollLeft] = useState(false);
@@ -65,6 +66,7 @@ function Courses() {
       });
     }
   };
+   
 
   // Prevent rendering for admins (except superadmin)
   if (isAuth && user?.userRole === "admin" && user?.userMainRole !== "superadmin") {

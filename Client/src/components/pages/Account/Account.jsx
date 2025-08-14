@@ -22,7 +22,7 @@ const Account = ({ user }) => {
   // const Account = ({user}) => {
   const navigate = useNavigate();
 
-  const { setisAuth, setUser } = UserData();
+  const { setisAuth, setUser,loading } = UserData();
   function logout() {
     localStorage.clear();
     setUser([]);
@@ -51,9 +51,13 @@ const Account = ({ user }) => {
         return "text-gray-400 bg-gray-500/20";
     }
   };
-
-  return (
-    <div>
+// if(loading) {
+//   return <ProfessionalLoadingScreen/>
+// }
+return (
+    <>
+       
+            <div>
       {user && (
         <div className="pt-20 min-h-screen bg-gradient-to-br from-slate-900  to-slate-900 relative overflow-hidden flex items-center justify-center">
           {/* Background decorative elements */}
@@ -261,7 +265,10 @@ const Account = ({ user }) => {
         //
       )}
     </div>
-  );
+        
+    </>
+);
+
 };
 
 export default Account;
