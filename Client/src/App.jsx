@@ -33,7 +33,7 @@ import Instructor from "./components/pages/Instructors/Instructor";
 // 🧠 Move `useLocation` logic here
 const AppContent = () => {
   const navigate=useNavigate()
-  const { isAuth, user, loading } = UserData();
+  const { isAuth, user } = UserData();
   console.log(user)
   const location = useLocation();
   const hideNavbarFooterPaths = ["/login", "/signup", "/verify","/admin/dashboard","/admin/users","/admin/courses","/admin/analytics"];
@@ -45,9 +45,9 @@ const AppContent = () => {
   }, [isAuth, user, location.pathname, navigate]);
 
 
-  if (loading) {
-    return <LoadingScreen />;
-  }
+  // if (loading) {
+  //   return <LoadingScreen />;
+  // }
 
   return (
     <>
