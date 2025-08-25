@@ -6,13 +6,6 @@ import { CourseData } from "../../../Context/CourseContext";
 function Login() {
     const navigate = useNavigate();
 
-
-  // Mock functions for demo - replace with your actual context
-  // const btnLoading = false;
-  // const loginUser = async (email, password, nav) => {
-  //   console.log("Login requested:", email, password);
-  // };
-  // const navigate = (path) => console.log("Navigate to:", path);
   const [userEmail, setUserEmail] = useState("");
   const [userPassword, setUserPassword] = useState("");
   const [focusedField, setFocusedField] = useState("");
