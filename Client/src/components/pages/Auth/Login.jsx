@@ -12,8 +12,7 @@ function Login() {
   const { btnLoading, loginUser } = UserData();
   const {fetchMyCourses}=CourseData()
   const handleSubmit = async (e) => {
-    // alert("")  
-    e.preventDefault();
+      e.preventDefault();
     // console.log("Submitting:", userEmail, userPassword);
     await loginUser(userEmail, userPassword, navigate,fetchMyCourses);
   };
